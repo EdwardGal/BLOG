@@ -1,0 +1,28 @@
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+
+	&__content {
+		padding: 8px;
+		border: 1px solid #95a0ab;
+		display: flex;
+		box-shadow: var(--shadow-1);
+		border-radius: 30px;
+	}
+
+	&__button {
+		width: 44px;
+		height: 44px;
+		font-size: 14px;
+		grid-row: 500;
+		color: #0f171f;
+		border-radius: 50%;
+	}
+}
+
+.active {
+	color: #f8f8f8;
+	background-color: var(--color-button);
+}

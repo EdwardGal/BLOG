@@ -1,0 +1,40 @@
+.field {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	&__label {
+		font-size: 14px;
+		font-weight: 500;
+		margin-bottom: 6px;
+	}
+
+	&__line {
+		display: flex;
+		gap: 14px;
+		min-height: 55px;
+		padding: 0 30px;
+		font-size: 14px;
+		background-color: #bce9dc49;
+		border-bottom: 2px solid transparent;
+		border-radius: 30px 30px 0 0;
+		&:has(.field__input:focus) {
+			border-bottom-color: var(--color-button);
+		}
+	}
+
+	&__icon {
+		align-self: center;
+	}
+
+	&__input {
+		width: 100%;
+	}
+
+	&__error {
+		padding: 6px 10px;
+		font-size: 12px;
+		font-weight: 600;
+		color: var(--color-text-error);
+	}
+}

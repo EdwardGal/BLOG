@@ -1,0 +1,38 @@
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 64px;
+	display: flex;
+	align-items: center;
+	background-color: #f0efe7;
+	box-shadow: var(--shadow-2);
+
+	&__container {
+		max-width: var(--container-desktop-width);
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	&__content{
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+	}
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 40px;
+	}
+
+	&__search{
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 100;
+		width: 100%;
+	}
+}

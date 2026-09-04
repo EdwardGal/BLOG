@@ -1,0 +1,80 @@
+.postCard {
+	flex: 0 1 calc((100% - 40px) / 3);
+	position: relative;
+	border-radius: 28px;
+	box-shadow: var(--shadow-2);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+
+	&__cover {
+		height: 223px;
+		overflow: hidden;
+	}
+
+	&__image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: all 0.3s ease;
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
+
+	&__author {
+		margin-bottom: 26px;
+	}
+
+	&__category {
+		position: absolute;
+		z-index: 10;
+		top: 16px;
+		left: 16px;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		padding: 6px 12px;
+		font-size: 14px;
+		font-weight: 500;
+		color: #3c1401;
+		background-color: #ffe0d2;
+		border-radius: 20px;
+	}
+
+	&__info {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		padding: 20px 20px 30px;
+	}
+
+	&__title {
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 125%;
+		margin-bottom: 10px;
+	}
+
+	&__description {
+		flex: 1 1 auto;
+		line-height: 160%;
+		color: #0f171f;
+		margin-bottom: 20px;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&__readMore {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--color-button);
+	}
+}

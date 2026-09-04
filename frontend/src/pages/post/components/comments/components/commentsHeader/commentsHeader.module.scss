@@ -1,0 +1,17 @@
+.commentsHeader {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 24px;
+
+	&__title {
+		margin: 0;
+	}
+
+	&__count {
+		padding: 2px 15px;
+		font-weight: 500;
+		border-radius: 20px;
+		background: #ffe0d0;
+	}
+}

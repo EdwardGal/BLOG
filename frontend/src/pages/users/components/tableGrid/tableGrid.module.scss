@@ -1,0 +1,6 @@
+.tableGrid {
+	display: grid;
+	grid-template-columns: 220px minmax(250px, 1fr) 180px 180px 100px;
+	align-items: center;
+	column-gap: 16px;
+}

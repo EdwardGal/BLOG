@@ -1,0 +1,22 @@
+.tableHead {
+	position: relative;
+	background-color: #f7f7f7;
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: calc(100% + 40px);
+		height: 100%;
+		background-color: #f7f7f7;
+	}
+
+	&__cell {
+		padding: 16px;
+		font-size: 14px;
+		font-weight: 600;
+		color: #666;
+	}
+}

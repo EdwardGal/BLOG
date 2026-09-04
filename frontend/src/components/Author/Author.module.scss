@@ -1,0 +1,73 @@
+.author {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-right: 50px;
+	&__avatar {
+		width: 44px;
+		height: 44px;
+		display: inline-flex;
+		justify-content: center;
+		text-transform: uppercase;
+		align-items: center;
+		font-weight: 600;
+		color: var(--color-title);
+		border-radius: 50%;
+		background-color: var(--color-bg-icon);
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	&__name {
+		font-weight: 500;
+	}
+
+	&__details {
+		display: flex;
+		gap: 8px;
+	}
+
+	&__date {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__time {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__comments {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__commentsCounter {
+	}
+}
+
+.card {
+	.author__avatar {
+		width: 32px;
+		height: 32px;
+		font-size: 12px;
+	}
+	.author__name {
+		font-size: 14px;
+	}
+	.author__date,
+	.author__time {
+		font-size: 12px;
+	}
+}

@@ -1,0 +1,32 @@
+:root {
+	--color-white: #f8f8f8;
+	--color-title: #0f171f;
+	--color-text: #495766;
+	--color-button: #006951;
+
+	--color-bg-icon: #bce9dc;
+
+	--container-desktop-width: 1200px;
+	--color-border: #95a0ab;
+
+	--color-text-error: #3c1401;
+	--color-bg-error: #ffe0d2;
+
+	--shadow-1:
+		0 1px 2px 0 oklch(20% 0.02 250 / 0.3),
+		0 1px 3px 1px oklch(20% 0.02 250 / 0.15);
+
+	--shadow-2:
+		0 1px 2px 0 oklch(20% 0.02 250 / 0.3),
+		0 2px 6px 2px oklch(20% 0.02 250 / 0.15);
+
+	--shadow-3:
+		0 1px 6px 0 oklch(20% 0.02 250 / 0.3),
+		0 2px 2px 2px oklch(20% 0.02 250 / 0.15);
+
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+
+	--transition-fast: 0.2s ease;
+}
