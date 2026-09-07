@@ -27,7 +27,6 @@ router.get('/', async (req, res) => {
   });
 });
 
-
 router.get('/:id', async (req, res) => {
   const post = await getPost(req.params.id);
 
@@ -35,7 +34,6 @@ router.get('/:id', async (req, res) => {
     data: mapPost(post),
   });
 });
-
 
 router.post('/:id/comments', authenticated, async (req, res) => {
   const newComment = await addComment(req.params.id, {
@@ -47,7 +45,6 @@ router.post('/:id/comments', authenticated, async (req, res) => {
     data: mapComment(newComment),
   });
 });
-
 
 router.delete(
   '/:postId/comments/:commentId',
@@ -98,7 +95,6 @@ router.post(
   }
 );
 
-
 router.patch(
   '/:id',
   authenticated,
@@ -106,7 +102,6 @@ router.patch(
   upload.single('image'),
   async (req, res) => {
     try {
-
       const post = await getPost(req.params.id);
 
       if (!post) {
@@ -115,21 +110,19 @@ router.patch(
         });
       }
 
-
       const updateData = {
+        category: req.body.category,
         title: req.body.title,
+        description: req.body.description,
         content: req.body.content,
         timetoread: req.body.timeToRead,
       };
-
 
       if (req.file) {
         updateData.image = `/uploads/posts/${req.file.filename}`;
       }
 
-
       const updatedPost = await editPost(req.params.id, updateData);
-
 
       if (req.file && post.image) {
         const oldImagePath = path.resolve('uploads/posts', path.basename(post.image));
