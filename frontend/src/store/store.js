@@ -3,7 +3,6 @@ import { thunk } from 'redux-thunk';
 import {
 	appReducer,
 	postReducer,
-	postsReducer,
 	userReducer,
 	usersReducer,
 	queryReducer,
@@ -14,7 +13,6 @@ const reducer = combineReducers({
 	user: userReducer,
 	users: usersReducer,
 	post: postReducer,
-	posts: postsReducer,
 	query: queryReducer,
 });
 

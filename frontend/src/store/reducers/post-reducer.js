@@ -33,14 +33,6 @@ export const postReducer = (state = initialPostState, { type, payload }) => {
 		case ACTION_TYPE.RESET_POST_DATA:
 			return initialPostState;
 
-		// case ACTION_TYPE.SET_COMMENT_DATA:
-		// 	return {
-		// 		...state,
-		// 		comments: state.comments.map((comment) =>
-		// 			comment.id === payload.id ? payload : comment,
-		// 		),
-		// 	};
-
 		default:
 			return state;
 	}

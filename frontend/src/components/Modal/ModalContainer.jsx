@@ -23,13 +23,13 @@ export const ModalContainer = () => {
 	const onConfirm = async () => {
 		switch (modal.type) {
 			case 'DELETE_COMMENT':
-				dispatch(
+				await dispatch(
 					removeCommentAsync(modal.payload.postId, modal.payload.commentId),
 				);
 				break;
 
 			case 'DELETE_POST':
-				dispatch(removePostAsync(modal.payload.id));
+				await dispatch(removePostAsync(modal.payload.id));
 
 				navigate(ROUTES.HOME);
 				break;
