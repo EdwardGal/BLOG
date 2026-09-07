@@ -98,7 +98,7 @@ router.post(
 router.patch(
   '/:id',
   authenticated,
-  hasRole([ROLES.ADMIN]),
+  hasRole([ROLES.ADMIN, ROLES.MODERATOR]),
   upload.single('image'),
   async (req, res) => {
     try {
@@ -161,7 +161,7 @@ router.patch('/:postId/comments/:commentId', authenticated, async (req, res) => 
   });
 });
 
-router.delete('/:id', authenticated, hasRole([ROLES.ADMIN]), async (req, res) => {
+router.delete('/:id', authenticated, hasRole([ROLES.ADMIN, ROLES.MODERATOR]), async (req, res) => {
   await deletePost(req.params.id);
 
   res.send({
