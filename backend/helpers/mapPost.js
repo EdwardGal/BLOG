@@ -3,7 +3,7 @@ import { mapComment } from './mapComment.js';
 
 export const mapPost = (post) => {
   return {
-    id: post.id,
+    id: post.id || post._id,
     author: post.author,
     category: post.category,
     imageUrl: post.image,
