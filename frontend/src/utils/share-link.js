@@ -6,7 +6,7 @@ export const shareLink = async (title) => {
 			title,
 			url,
 		});
-	} else {
+	} else if (navigator.clipboard?.writeText) {
 		await navigator.clipboard.writeText(url);
 	}
 };

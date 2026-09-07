@@ -1,4 +1,4 @@
-module.exports = function (comment) {
+export const mapComment = (comment) => {
   return {
     id: comment.id,
     authorId: comment.author.id || comment.author._id || comment.author,

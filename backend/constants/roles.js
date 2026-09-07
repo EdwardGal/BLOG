@@ -1,8 +1,9 @@
-const ADMIN = 0;
-const MODERATOR = 1;
-const USER = 2;
+export const ADMIN = 0;
+export const MODERATOR = 1;
+export const USER = 2;
 
-module.exports = {
+
+export default {
   ADMIN,
   MODERATOR,
   USER,

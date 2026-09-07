@@ -1,4 +1,4 @@
-const Post = require('../models/Post');
+import Post from '../models/Post.js';
 
 async function addPost(post) {
   const newPost = await Post.create(post);
@@ -47,10 +47,4 @@ async function getPosts(search = '', limit = 6, page = 1) {
   };
 }
 
-module.exports = {
-  addPost,
-  editPost,
-  deletePost,
-  getPosts,
-  getPost,
-};
+export { addPost, editPost, deletePost, getPosts, getPost };

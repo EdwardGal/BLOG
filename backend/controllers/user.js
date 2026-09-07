@@ -1,8 +1,8 @@
-const bcrypt = require('bcrypt');
-const User = require('../models/User');
-const { mongoose } = require('mongoose');
-const { generate } = require('../helpers/token');
-const ROLES = require('../constants/roles');
+import bcrypt from 'bcrypt';
+import User from '../models/User.js';
+import mongoose from 'mongoose';
+import { generate } from '../helpers/token.js';
+import ROLES from '../constants/roles.js';
 
 async function register(name, login, password) {
   if (!password) {
@@ -54,4 +54,4 @@ function updateUser(id, userData) {
   return User.findByIdAndUpdate(id, userData, { returnDocument: 'after' });
 }
 
-module.exports = { register, login, getUsers, getRoles, deleteUser, updateUser };
+export { register, login, getUsers, getRoles, deleteUser, updateUser };

@@ -38,7 +38,7 @@ export const PostHeader = ({
 		);
 	};
 
-	const isAdmin = checkAccess([ROLE.ADMIN], roleId);
+	const isAdmin = checkAccess([ROLE.ADMIN,ROLE.MODERATOR], roleId);
 
 	return (
 		<div className={styles.postHeader}>

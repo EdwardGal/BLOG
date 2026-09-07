@@ -1,20 +1,20 @@
-const mongoose = require('mongoose');
-const roles = require('../constants/roles');
+import mongoose from 'mongoose';
+import roles from '../constants/roles.js'; // Добавлено расширение .js
 
 const UserSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      requred: true,
+      required: true,
     },
     login: {
       type: String,
-      requred: true,
+      required: true,
       unique: true,
     },
     password: {
       type: String,
-      requred: true,
+      required: true,
     },
     role: {
       type: Number,
@@ -26,4 +26,4 @@ const UserSchema = mongoose.Schema(
 
 const User = mongoose.model('User', UserSchema);
 
-module.exports = User;
+export default User;

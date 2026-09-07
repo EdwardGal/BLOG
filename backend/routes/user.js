@@ -1,9 +1,9 @@
-const express = require('express');
-const { getUsers, getRoles, updateUser, deleteUser } = require('../controllers/user');
-const hasRole = require('../middlewares/hasRole');
-const authenticated = require('../middlewares/authenticated');
-const mapUser = require('../helpers/mapUser');
-const ROLES = require('../constants/roles');
+import express from 'express';
+import { getUsers, getRoles, updateUser, deleteUser } from '../controllers/user.js';
+import hasRole from '../middlewares/hasRole.js';
+import authenticated from '../middlewares/authenticated.js';
+import { mapUser } from '../helpers/index.js';
+import ROLES from '../constants/roles.js';
 
 const router = express.Router({ mergeParams: true });
 
@@ -33,4 +33,4 @@ router.delete('/:id', authenticated, hasRole([ROLES.ADMIN]), async (req, res) =>
   res.send({ error: null });
 });
 
-module.exports = router;
+export default router;

@@ -23,7 +23,10 @@ export const HomeHeader = () => {
 				Обзоры, маршруты, советы по обслуживанию и истории из мира велосипедов.
 			</div>
 			<div className={styles.homeHeader__actions}>
-				<Link className={styles.homeHeader__action} to="/post/001">
+				<Link
+					className={styles.homeHeader__action}
+					to="/post/6a9bf49b9d50d8b185b42d56"
+				>
 					Читать главный материал
 				</Link>
 				{isAdmin && (

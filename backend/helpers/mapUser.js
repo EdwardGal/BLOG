@@ -1,4 +1,4 @@
-module.exports = function (user) {
+export const mapUser = (user) => {
   return {
     id: user.id,
     name: user.name,

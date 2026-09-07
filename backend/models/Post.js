@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
+import mongoose from 'mongoose';
 
 const PostSchema = mongoose.Schema(
   {
@@ -7,34 +6,37 @@ const PostSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+
     category: {
       type: String,
       required: true,
     },
+
     image: {
       type: String,
       required: true,
-      vaidates: {
-        validator: validator.isURL,
-        message: 'Image should be a valid url',
-      },
     },
+
     title: {
       type: String,
       required: true,
     },
+
     description: {
       type: String,
       required: true,
     },
+
     timetoread: {
       type: String,
       required: true,
     },
+
     content: {
       type: String,
       required: true,
     },
+
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -42,9 +44,11 @@ const PostSchema = mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
 const Post = mongoose.model('Post', PostSchema);
 
-module.exports = Post;
+export default Post;

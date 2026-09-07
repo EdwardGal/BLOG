@@ -22,7 +22,7 @@ export const Author = ({
 				<div className={styles.author__details}>
 					<span className={styles.author__date}>
 						<Icon name="Calendar" size="16" color="#0f171f" />
-						{publishedAt}
+						{new Date(publishedAt).toLocaleString()}
 					</span>
 					<span className={styles.author__time}>
 						<Icon name="Clock" size="16" color="#0f171f" />
@@ -39,7 +39,7 @@ export const Author = ({
 						size="20"
 					/>
 					<span className={styles.author__commentsCounter}>
-						{comments === undefined ? 0 : comments.length}
+						{comments.length || 0}
 					</span>
 				</div>
 			)}

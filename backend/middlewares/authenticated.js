@@ -1,14 +1,13 @@
-const { verify } = require('../helpers/token');
-const User = require('../models/User');
+import { verify } from '../helpers/token.js';
+import User from '../models/User.js';
 
-module.exports = async function (req, res, next) {
-  // 1. Проверяем, есть ли кука вообще. Если нет — отдаем 401 ошибку вместо падения
-  if (!req.cookies || !req.cookies.token) {
+export default async function authenticated(req, res, next) {
+  // Безопасная проверка кук с помощью опциональной цепочки ?.
+  if (!req.cookies?.token) {
     return res.status(401).send({ error: 'Auth token is required' });
   }
 
   try {
-    // 2. Проверяем токен в try-catch
     const tokenData = verify(req.cookies.token);
 
     const user = await User.findOne({ _id: tokenData.id });
@@ -22,4 +21,4 @@ module.exports = async function (req, res, next) {
   } catch (err) {
     return res.status(401).send({ error: 'Invalid or expired token' });
   }
-};
+}

@@ -1,9 +1,12 @@
-const express = require('express');
+import express from 'express';
+import authRouter from './auth.js';
+import postRouter from './post.js';
+import userRouter from './user.js';
 
 const router = express.Router({ mergeParams: true });
 
-router.use('/', require('./auth'));
-router.use('/posts', require('./post'));
-router.use('/users', require('./user'));
+router.use('/', authRouter);
+router.use('/posts', postRouter);
+router.use('/users', userRouter);
 
-module.exports = router;
+export default router;

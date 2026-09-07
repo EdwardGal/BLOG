@@ -59,10 +59,9 @@ export const Post = () => {
 		return null;
 	}
 
-
 	const specificPostPage =
 		isEditing || isCreating ? (
-			<PrivateContent access={[ROLE.ADMIN]} serverError={error}>
+			<PrivateContent access={[ROLE.ADMIN, ROLE.MODERATOR]} serverError={error}>
 				<PostForm post={post} />
 			</PrivateContent>
 		) : (

@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { schema } from './schema';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,17 +21,24 @@ import { sanitizeContent } from './utils';
 import styles from './postForm.module.scss';
 import { savePostAsync } from '../../../../actions';
 
-const getFormData = (post) => ({
-	id: post.id ?? '',
-	category: post.category ?? '',
-	title: post.title ?? '',
-	description: post.description ?? '',
-	timeToRead: post.timeToRead ?? '',
-	imageUrl: post.imageUrl ?? '',
-	content: post.content ?? '',
-});
-
 export const PostForm = ({ post }) => {
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			category: post.category ?? '',
+			title: post.title ?? '',
+			description: post.description ?? '',
+			timeToRead: post.timeToRead ?? '',
+			content: post.content ?? '',
+			image: null,
+		},
+		resolver: yupResolver(schema),
+	});
+
 	const { id, publishedAt } = post;
 
 	const dispatch = useDispatch();
@@ -38,31 +46,19 @@ export const PostForm = ({ post }) => {
 
 	const { name } = useSelector(selectUser);
 
-	const [formData, setFormData] = useState(() => getFormData(post));
+	const onSubmit = (data) => {
+		const postData = new FormData();
 
-	useEffect(() => {
-		setFormData(getFormData(post));
-	}, [post]);
+		postData.append('author', name);
+		postData.append('category', data.category.trim());
+		postData.append('title', data.title.trim());
+		postData.append('description', data.description.trim());
+		postData.append('timeToRead', data.timeToRead.trim());
+		postData.append('content', sanitizeContent(data.content));
 
-	const onChange = ({ target }) => {
-		const { name, value } = target;
-
-		setFormData((prev) => ({
-			...prev,
-			[name]: value,
-		}));
-	};
-
-	const onFormSave = () => {
-		const postData = {
-			author: name,
-			category: formData.category.trim(),
-			imageUrl: formData.imageUrl.trim(),
-			title: formData.title.trim(),
-			description: formData.description.trim(),
-			timeToRead: formData.timeToRead.trim(),
-			content: sanitizeContent(formData.content),
-		};
+		if (data.image) {
+			postData.append('image', data.image);
+		}
 
 		dispatch(savePostAsync(id, postData)).then(({ id }) => {
 			navigate(`/post/${id}`);
@@ -77,53 +73,62 @@ export const PostForm = ({ post }) => {
 						{publishedAt ? `Редактор публикации: ${id}` : 'Новая публикация'}
 					</H2>
 
-					<div className={styles.postForm__form}>
+					<form
+						className={styles.postForm__form}
+						onSubmit={handleSubmit(onSubmit)}
+					>
 						<Input
 							name="category"
 							label="Категория"
-							value={formData.category}
-							onChange={onChange}
 							placeholder="Введите категорию"
+							error={errors.category?.message}
+							{...register('category')}
 						/>
 
 						<Input
 							name="title"
 							label="Заголовок"
-							value={formData.title}
-							onChange={onChange}
 							placeholder="Введите заголовок"
+							error={errors.title?.message}
+							{...register('title')}
 						/>
 
 						<Input
 							name="description"
 							label="Описание"
-							value={formData.description}
-							onChange={onChange}
 							placeholder="Введите описание"
+							error={errors.description?.message}
+							{...register('description')}
 						/>
 
 						<Input
 							name="timeToRead"
 							label="Время"
-							value={formData.timeToRead}
-							onChange={onChange}
 							placeholder="Введите время прочтения"
+							error={errors.timeToRead?.message}
+							{...register('timeToRead')}
 						/>
 
 						<Input
-							name="imageUrl"
-							label="URL обложки"
-							value={formData.imageUrl}
-							onChange={onChange}
-							placeholder="Введите URL картинки"
+							type="file"
+							id="image"
+							name="image"
+							accept="image/*"
+							label="Изображение"
+							error={errors.image?.message}
+							onChange={(event) => {
+								setValue('image', event.target.files?.[0] ?? null, {
+									shouldValidate: true,
+								});
+							}}
 						/>
 
 						<TextArea
 							name="content"
 							label="Текст статьи"
-							value={formData.content}
-							onChange={onChange}
 							placeholder="Введите текст статьи"
+							error={errors.content?.message}
+							{...register('content')}
 						/>
 
 						<div className={styles.postForm__actions}>
@@ -140,15 +145,11 @@ export const PostForm = ({ post }) => {
 								</Button>
 							)}
 
-							<Button
-								className={styles.postForm__action}
-								type="button"
-								onClick={onFormSave}
-							>
+							<Button className={styles.postForm__action} type="submit">
 								{publishedAt ? 'Сохранить' : 'Опубликовать'}
 							</Button>
 						</div>
-					</div>
+					</form>
 				</div>
 			</PageContainer>
 		</div>

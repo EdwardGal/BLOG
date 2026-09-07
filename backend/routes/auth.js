@@ -1,6 +1,6 @@
-const express = require('express');
-const { register, login } = require('../controllers/user');
-const mapUser = require('../helpers/mapUser');
+import express from 'express';
+import { register, login } from '../controllers/user.js';
+import {mapUser} from '../helpers/index.js';
 
 const router = express.Router({ mergeParams: true });
 
@@ -27,4 +27,4 @@ router.post('/logout', (req, res) => {
   res.cookie('token', '', { httpOnly: true }).send({});
 });
 
-module.exports = router;
+export default router;

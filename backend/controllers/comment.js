@@ -1,5 +1,5 @@
-const Comment = require('../models/Comment');
-const Post = require('../models/Post');
+import Comment from '../models/Comment.js';
+import Post from '../models/Post.js';
 
 async function addComment(postId, comment) {
   const newComment = await Comment.create(comment);
@@ -21,8 +21,4 @@ async function editComment(commentId, commentData) {
   return updatedComment;
 }
 
-module.exports = {
-  addComment,
-  deleteComment,
-  editComment,
-};
+export { addComment, deleteComment, editComment };

@@ -2,9 +2,10 @@ import { forwardRef } from 'react';
 import clsx from 'clsx';
 import styles from './TextArea.module.scss';
 import PropTypes from 'prop-types';
+import { FormError } from '../FormError/FormError';
 
 export const TextArea = forwardRef(
-	({ id, className, label, ...props }, ref) => {
+	({ id, className, label, error, ...props }, ref) => {
 		const inputId = id ?? props.name;
 
 		return (
@@ -20,11 +21,11 @@ export const TextArea = forwardRef(
 					className={clsx(styles.field__area, className)}
 					{...props}
 				/>
+				{error && <FormError className={styles.field__error} error={error} />}
 			</div>
 		);
 	},
 );
-
 
 TextArea.propTypes = {
 	id: PropTypes.string,

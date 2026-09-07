@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const mapComment = require('./mapComment');
+import mongoose from 'mongoose';
+import { mapComment } from './mapComment.js';
 
-module.exports = function (post) {
+export const mapPost = (post) => {
   return {
     id: post.id,
     author: post.author,
@@ -10,10 +10,11 @@ module.exports = function (post) {
     title: post.title,
     description: post.description,
     content: post.content,
-    comments: post.comments.map((comment) =>
-      mongoose.isObjectIdOrHexString(comment) ? comment : mapComment(comment)
-    ),
-    timeToRead: post.timetoread,
-    publishedAt: post.createdAt,
+    comments:
+      post?.comments?.map((comment) =>
+        mongoose.isObjectIdOrHexString(comment) ? comment : mapComment(comment)
+      ) || [],
+    timeToRead: post?.timetoread,
+    publishedAt: post?.createdAt,
   };
 };

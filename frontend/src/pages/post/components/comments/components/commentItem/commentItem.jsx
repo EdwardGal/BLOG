@@ -49,7 +49,7 @@ export const CommentItem = ({
 		setIsEdit(!isEdit);
 	};
 
-	const checkRole = authorId === id || checkAccess([ROLE.ADMIN], roleId);
+	const checkRole = authorId === id || checkAccess([ROLE.ADMIN,ROLE.MODERATOR], roleId);
 
 	return (
 		<article className={styles.comment}>
