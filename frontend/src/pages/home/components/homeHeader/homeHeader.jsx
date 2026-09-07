@@ -22,22 +22,17 @@ export const HomeHeader = () => {
 			<div className={styles.homeHeader__subtitle}>
 				Обзоры, маршруты, советы по обслуживанию и истории из мира велосипедов.
 			</div>
-			<div className={styles.homeHeader__actions}>
-				<Link
-					className={styles.homeHeader__action}
-					to="/post/6a9e97c1b65f2de594a8cb67"
-				>
-					Читать главный материал
-				</Link>
-				{isAdmin && (
+
+			{isAdmin && (
+				<div className={styles.homeHeader__actions}>
 					<Link
 						className={clsx(styles.homeHeader__action, styles.secondary)}
 						to="/post"
 					>
 						Написать пост
 					</Link>
-				)}
-			</div>
+				</div>
+			)}
 		</div>
 	);
 };
