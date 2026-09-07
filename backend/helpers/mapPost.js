@@ -11,10 +11,10 @@ export const mapPost = (post) => {
     description: post.description,
     content: post.content,
     comments:
-      post?.comments?.map((comment) =>
+      post.comments.map((comment) =>
         mongoose.isObjectIdOrHexString(comment) ? comment : mapComment(comment)
       ) || [],
-    timeToRead: post?.timetoread,
-    publishedAt: post?.createdAt,
+    timeToRead: post.timetoread,
+    publishedAt: post.createdAt,
   };
 };

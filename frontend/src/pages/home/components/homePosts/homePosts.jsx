@@ -8,7 +8,6 @@ import styles from './homePosts.module.scss';
 import { request } from '../../../../utils';
 import { setSearchResultsCount } from '../../../../actions';
 
-
 export const HomePosts = () => {
 	const dispatch = useDispatch();
 
@@ -42,16 +41,22 @@ export const HomePosts = () => {
 
 	return (
 		<>
-			{posts.length === 0 ? (
-				<FormError error="По вашему запросу ничего не найдено" />
-			) : (
+			{posts.length === 0 && (
+				<FormError
+					error={
+						lastPage === 0
+							? 'Публикаций еще нет'
+							: 'По вашему запросу ничего не найдено'
+					}
+				/>
+			)}
+			{posts.length > 0 && (
 				<div className={styles.homePosts}>
 					{posts.map((post) => (
 						<PostCard key={post.id} {...post} />
 					))}
 				</div>
 			)}
-
 			{lastPage > 1 && (
 				<Pagination page={page} totalPages={lastPage} setPage={setPage} />
 			)}
